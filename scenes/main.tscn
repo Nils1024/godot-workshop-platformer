@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjfmiu8cu3um0"]
+[gd_scene load_steps=9 format=3 uid="uid://bjfmiu8cu3um0"]
 
 [ext_resource type="Script" uid="uid://bwt3u7dx6mahm" path="res://scenes/main_menu.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://qbbkp1va8qy2" path="res://images/UI/Create your own game!.png" id="2_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dffvwvfng2mr4" path="res://images/UI/Create your own game! - clicked.png" id="3_tipki"]
+[ext_resource type="Texture2D" uid="uid://dtxbfbicdfsl8" path="res://images/UI/Create your own game! - hover.png" id="4_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bdlncuwxct821" path="res://images/UI/Quit.png" id="5_choun"]
+[ext_resource type="Texture2D" uid="uid://cxo0ix47qpoya" path="res://images/UI/Quit - clicked.png" id="6_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://mykgusr0sv2o" path="res://images/UI/Quit - hover.png" id="7_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://dff8sua5al7ed" path="res://images/UI/Logo.png" id="8_tipki"]
 
 [node name="Main" type="Node2D"]
 
@@ -11,19 +18,44 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_o5qli")
 
-[node name="Start" type="Button" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 0
-offset_left = 705.0
-offset_top = 107.0
-offset_right = 979.0
-offset_bottom = 251.0
+offset_left = -13.0
+offset_top = -7.0
+offset_right = 1184.0
+offset_bottom = 665.0
+color = Color(0.37036338, 0.5462693, 0.5547281, 1)
 
-[node name="Quit" type="Button" parent="Control"]
+[node name="Start" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 706.0
-offset_top = 323.0
-offset_right = 980.0
-offset_bottom = 467.0
+offset_left = 508.0
+offset_top = 254.0
+offset_right = 1088.0
+offset_bottom = 390.0
+texture_normal = ExtResource("2_o6xl0")
+texture_pressed = ExtResource("3_tipki")
+texture_hover = ExtResource("4_85g3d")
+stretch_mode = 5
+
+[node name="Quit" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 749.0
+offset_top = 466.0
+offset_right = 874.0
+offset_bottom = 524.0
+texture_normal = ExtResource("5_choun")
+texture_pressed = ExtResource("6_ya4ey")
+texture_hover = ExtResource("7_eb6dy")
+stretch_mode = 5
+
+[node name="Logo" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 19.0
+offset_right = 874.0
+offset_bottom = 211.0
+texture = ExtResource("8_tipki")
+stretch_mode = 5
 
 [connection signal="pressed" from="Control/Start" to="Control" method="_on_start_pressed"]
 [connection signal="pressed" from="Control/Quit" to="Control" method="_on_quit_pressed"]
