@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://co2n8m48u0812"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsew3"]
+bg_color = Color(0.86036915, 0.8603692, 0.8603691, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyk3b"]
+bg_color = Color(0.3533042, 0.6538434, 0.70148605, 1)
+
+[node name="Textbox" type="CanvasLayer"]
+metadata/_edit_vertical_guides_ = [-90.0]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 397.0
+offset_bottom = 236.0
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nsew3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nyk3b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Text"
