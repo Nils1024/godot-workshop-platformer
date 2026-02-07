@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://co2n8m48u0812"]
+[gd_scene format=3 uid="uid://co2n8m48u0812"]
+
+[ext_resource type="Script" uid="uid://duu1aatl1g1hw" path="res://scripts/textbox.gd" id="1_nyk3b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsew3"]
 bg_color = Color(0.86036915, 0.8603692, 0.8603691, 1)
@@ -11,32 +13,44 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyk3b"]
 bg_color = Color(0.3533042, 0.6538434, 0.70148605, 1)
 
-[node name="Textbox" type="CanvasLayer"]
+[node name="Textbox" type="CanvasLayer" unique_id=1023763064]
+script = ExtResource("1_nyk3b")
 metadata/_edit_vertical_guides_ = [-90.0]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextboxContainer" type="MarginContainer" parent="." unique_id=1951906745]
 offset_right = 397.0
-offset_bottom = 236.0
+offset_bottom = 74.0
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="TextboxContainer" unique_id=977370025]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nsew3")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer" unique_id=1786216218]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer" unique_id=1080871516]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nyk3b")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextboxContainer/MarginContainer" unique_id=353441427]
 layout_mode = 2
 
-[node name="Text" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer/VBoxContainer" unique_id=418356531]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=857856639]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Text"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextboxContainer/MarginContainer/VBoxContainer" unique_id=1822049409]
+layout_mode = 2
+alignment = 2
+
+[node name="Button" type="Button" parent="TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=845015649]
+layout_mode = 2
+text = "Continue"
