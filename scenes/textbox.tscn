@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://co2n8m48u0812"]
 
 [ext_resource type="Script" uid="uid://duu1aatl1g1hw" path="res://scripts/textbox.gd" id="1_nyk3b"]
+[ext_resource type="Texture2D" uid="uid://ca8kdopu36el0" path="res://images/UI/Continue-active.png" id="2_c4wvf"]
+[ext_resource type="Texture2D" uid="uid://dqb0ejejuhjj4" path="res://images/UI/Continue-pressed.png" id="3_1rgox"]
+[ext_resource type="Texture2D" uid="uid://bwvtrvrv1l1vq" path="res://images/UI/Continue-hover.png" id="4_6occq"]
+[ext_resource type="Texture2D" uid="uid://b0xemuika03j" path="res://images/UI/Continue-deactive.png" id="5_b4n6f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsew3"]
 bg_color = Color(0.86036915, 0.8603692, 0.8603691, 1)
@@ -19,7 +23,7 @@ metadata/_edit_vertical_guides_ = [-90.0]
 
 [node name="TextboxContainer" type="MarginContainer" parent="." unique_id=1951906745]
 offset_right = 397.0
-offset_bottom = 74.0
+offset_bottom = 93.0
 
 [node name="Panel" type="Panel" parent="TextboxContainer" unique_id=977370025]
 layout_mode = 2
@@ -49,8 +53,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TextboxContainer/MarginContainer/VBoxContainer" unique_id=1822049409]
 layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
 alignment = 2
 
-[node name="Button" type="Button" parent="TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=845015649]
+[node name="TextureButton" type="TextureButton" parent="TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1067059786]
 layout_mode = 2
-text = "Continue"
+texture_normal = ExtResource("2_c4wvf")
+texture_pressed = ExtResource("3_1rgox")
+texture_hover = ExtResource("4_6occq")
+texture_disabled = ExtResource("5_b4n6f")

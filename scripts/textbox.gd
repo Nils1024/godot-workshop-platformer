@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var textbox_container = $TextboxContainer
 @onready var textfield = $TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer/Text
-@onready var continue_button = $TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button
+@onready var continue_button = $TextboxContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton
 
 enum State {
 	READY,
@@ -49,15 +49,15 @@ func display_text():
 	tween.tween_property(textfield, "visible_characters", len(textfield.text), 1.2)
 	
 func _on_tween_finished():
-	continue_button.show()
+	continue_button.disabled = false
 	change_state(State.FINISHED)
 	
 func hide_textbox():
-	continue_button.hide()
 	textbox_container.hide()
 	
 func show_textbox():
 	textbox_container.show()
+	continue_button.disabled = true
 	
 func change_state(new_state):
 	current_state = new_state
