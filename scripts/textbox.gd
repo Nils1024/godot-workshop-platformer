@@ -10,16 +10,23 @@ enum State {
 	FINISHED
 }
 
-var tween = create_tween()
 var current_state = State.READY
+var text_queue = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.finished.connect(_on_tween_finished)
 	continue_button.pressed.connect(_on_continue_pressed)
 	
 	hide_textbox()
+	
+func _process(detla) -> void:
+	match current_state:
+		State.READY:
+			if !text_queue.is_empty():
+				display_text()
+		State.READING:
+			#TODO: Skip text animation
+			pass
 	
 func _on_continue_pressed():
 	match current_state:
@@ -27,12 +34,19 @@ func _on_continue_pressed():
 			change_state(State.READY)
 			hide_textbox()
 	
-func set_text(text):
-	textfield.text = text
+func queue_text(text):
+	text_queue.push_back(text)
+	
+func display_text():
+	textfield.text = text_queue.pop_front()
+	textfield.visible_characters = 0
 	change_state(State.READING)
 	show_textbox()
 
-	tween.tween_property(textfield, "visible_characters", len(text), 1.2)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.finished.connect(_on_tween_finished, CONNECT_ONE_SHOT)
+	tween.tween_property(textfield, "visible_characters", len(textfield.text), 1.2)
 	
 func _on_tween_finished():
 	continue_button.show()
