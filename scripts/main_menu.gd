@@ -26,6 +26,6 @@ func _on_quit_pressed() -> void:
 func _on_timer_timeout() -> void:
 	match current_button_type:
 		ButtonType.START:
-			get_tree().change_scene_to_file("res://scenes/game.tscn")
+			get_tree().change_scene_to_file("res://scenes/selection.tscn")
 		ButtonType.QUIT:
 			get_tree().quit()

@@ -10,16 +10,20 @@ enum GameState {
 	WORKSPACE_INTRO
 }
 
-var current_game_state = GameState.INTRO
+var current_game_state = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$FadeTransition/AnimationPlayer.play("fade_out")
 	textbox.offset = Vector2(400, 200)
 	
+	await Util.wait(1)
+	
 	textbox.queue_text("Hello, welcome to Godot!")
 	textbox.queue_text("In this small tutorial, you will build a 2D game with a player that can run and jump around.")
 	textbox.queue_text("First of all I want to show you all the important areas of Godot.")
+	
+	current_game_state = GameState.INTRO
 	
 func _process(delta: float) -> void:
 	if textbox.text_queue.is_empty() and textbox.current_state == textbox.State.READY:

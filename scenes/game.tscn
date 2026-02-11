@@ -18,9 +18,6 @@ script = ExtResource("1_lbhrr")
 
 [node name="Textbox" parent="." unique_id=1023763064 instance=ExtResource("3_lnu2h")]
 
-[node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("5_iywne")]
-visible = false
-
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2038184204]
 offset_right = 1281.0
 offset_bottom = 720.0
@@ -57,3 +54,6 @@ offset_top = 104.0
 offset_right = 1092.0
 offset_bottom = 691.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_lbhrr")
+
+[node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("5_iywne")]
+mouse_filter = 2

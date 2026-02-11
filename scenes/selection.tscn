@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://yqmevf465snb"]
+
+[ext_resource type="PackedScene" uid="uid://ca0hptbdvu30l" path="res://scenes/util/transition.tscn" id="1_jqogx"]
+[ext_resource type="Script" uid="uid://dx7thot27bmtm" path="res://scripts/selection_menu.gd" id="1_pnwr1"]
+
+[node name="Node2D" type="Node2D" unique_id=1242989120]
+script = ExtResource("1_pnwr1")
+
+[node name="Control" type="Control" parent="." unique_id=1856332901]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level_1" type="Button" parent="Control" unique_id=2138092246]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 159.0
+offset_right = 682.0
+offset_bottom = 200.0
+
+[node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("1_jqogx")]
+mouse_filter = 2
+
+[node name="Timer" type="Timer" parent="FadeTransition" unique_id=776614606]
+
+[connection signal="pressed" from="Control/Level_1" to="." method="_on_level_1_pressed"]
+[connection signal="timeout" from="FadeTransition/Timer" to="." method="_on_timer_timeout"]
