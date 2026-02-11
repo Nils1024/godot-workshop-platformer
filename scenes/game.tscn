@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dwhv0oe2ft6sd" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://co2n8m48u0812" path="res://scenes/util/textbox.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bvd4dqeabnggr" path="res://images/Game/Screenshot 2026-02-08 003337.png" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://73b2nw15lv8t" path="res://images/Game/Screenshot 2026-02-08 003222.png" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ca0hptbdvu30l" path="res://scenes/util/transition.tscn" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://ggvfuhhadfd2" path="res://images/UI/other-node-pressed.png" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://4cj5bsc50qdg" path="res://images/UI/other-node-hover.png" id="7_gee14"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 bg_color = Color(0.9843137, 0.35686275, 0.3529412, 0)
@@ -23,6 +26,16 @@ offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("4_lbhrr")
 expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1646583335]
+visible = false
+offset_left = 298.0
+offset_top = 106.0
+offset_right = 1185.2131
+offset_bottom = 638.0
+texture = ExtResource("4_iywne")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="Panel" type="Panel" parent="." unique_id=190060155]
 visible = false
@@ -57,3 +70,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lbhrr")
 
 [node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("5_iywne")]
 mouse_filter = 2
+[node name="OtherNodeButton" type="TextureButton" parent="." unique_id=861498139]
+offset_left = 6.0
+offset_top = 188.0
+offset_right = 187.0
+offset_bottom = 213.0
+texture_pressed = ExtResource("6_u5sy4")
+texture_hover = ExtResource("7_gee14")
+ignore_texture_size = true
+stretch_mode = 4
+
+[connection signal="pressed" from="OtherNodeButton" to="." method="_on_other_node_button_pressed"]
