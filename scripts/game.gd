@@ -11,6 +11,7 @@ enum GameState {
 	CREATE_ROOT_NODE_1,
 	CREATE_ROOT_NODE_2,
 	CREATE_ROOT_NODE_3,
+	CREATE_ROOT_NODE_FINISHED,
 }	
 
 var current_game_state = null
@@ -59,7 +60,36 @@ func _process(delta: float) -> void:
 				current_game_state = GameState.CREATE_ROOT_NODE_2
 			GameState.CREATE_ROOT_NODE_3:
 				$TextureRect2.show()
+				$CreateButton.show()
+			GameState.CREATE_ROOT_NODE_FINISHED:
+				$TextureRect2.hide()
+				$CreateButton.hide()
+				$"2DSceneButton".hide()
+				$"3DSceneButton".hide()
+				$UserInterfaceButton.hide()
+				$OtherNodeButton.hide()
+				$TextureRect.hide()
+				$TextureRect3.show()
+				$NodeButton.show()
 				
 
 func _on_other_node_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_3
+	
+func _on_user_interface_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_3d_scene_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_2d_scene_button_pressed() -> void:
+	pass # Replace with function body.
+	
+func _on_create_button_pressed() -> void:
+	current_game_state = GameState.CREATE_ROOT_NODE_FINISHED
+
+func _on_node_button_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
+			$RightClickMenu.show()
+			$RightClickMenu.global_position = get_viewport().get_mouse_position()

@@ -4,9 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://co2n8m48u0812" path="res://scenes/util/textbox.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://bvd4dqeabnggr" path="res://images/Game/Screenshot 2026-02-08 003337.png" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://73b2nw15lv8t" path="res://images/Game/Screenshot 2026-02-08 003222.png" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://dotk7w2a6vnav" path="res://images/Game/Screenshot 2026-02-08 003408.png" id="5_ca42v"]
 [ext_resource type="PackedScene" uid="uid://ca0hptbdvu30l" path="res://scenes/util/transition.tscn" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://b0e6nrq3i3b3m" path="res://images/UI/2D Scene - pressed.png" id="6_kvuet"]
+[ext_resource type="Texture2D" uid="uid://tyj0f6rrfexn" path="res://images/UI/Right click menu.png" id="6_rysoc"]
+[ext_resource type="Texture2D" uid="uid://bycjhw2p5bh56" path="res://images/UI/Create - hover.png" id="6_trtic"]
 [ext_resource type="Texture2D" uid="uid://ggvfuhhadfd2" path="res://images/UI/other-node-pressed.png" id="6_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://4cj5bsc50qdg" path="res://images/UI/other-node-hover.png" id="7_gee14"]
+[ext_resource type="Texture2D" uid="uid://dgr2x2w5it16h" path="res://images/UI/Node - hover.png" id="7_rysoc"]
+[ext_resource type="Texture2D" uid="uid://di02fedbinr6b" path="res://images/UI/2D Scene - hover.png" id="7_trtic"]
+[ext_resource type="Texture2D" uid="uid://qmydasdych8k" path="res://images/UI/3D Scene - pressed.png" id="8_ir15t"]
+[ext_resource type="Texture2D" uid="uid://gyxlfg20pp2k" path="res://images/UI/3D Scene - hover.png" id="9_ca42v"]
+[ext_resource type="Texture2D" uid="uid://ben11t63raoa3" path="res://images/UI/User Interface - pressed.png" id="10_rysoc"]
+[ext_resource type="Texture2D" uid="uid://c744dnixokuv0" path="res://images/UI/User Interface - hover.png" id="11_ssvqc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 bg_color = Color(0.9843137, 0.35686275, 0.3529412, 0)
@@ -36,6 +46,13 @@ offset_bottom = 638.0
 texture = ExtResource("4_iywne")
 expand_mode = 3
 stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=459210791]
+visible = false
+offset_right = 1281.0
+offset_bottom = 720.0
+texture = ExtResource("5_ca42v")
+expand_mode = 3
 
 [node name="Panel" type="Panel" parent="." unique_id=190060155]
 visible = false
@@ -69,7 +86,69 @@ offset_bottom = 691.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_lbhrr")
 
 [node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("5_iywne")]
+visible = false
 mouse_filter = 2
+
+[node name="NodeButton" type="TextureButton" parent="." unique_id=746004739]
+visible = false
+offset_left = 11.0
+offset_top = 97.0
+offset_right = 188.0
+offset_bottom = 117.0
+texture_hover = ExtResource("7_rysoc")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="RightClickMenu" type="TextureRect" parent="." unique_id=774863649]
+visible = false
+offset_left = 263.0
+offset_top = 161.0
+offset_right = 432.3512
+offset_bottom = 353.0
+texture = ExtResource("6_rysoc")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="CreateButton" type="TextureButton" parent="." unique_id=563695680]
+visible = false
+offset_left = 465.0
+offset_top = 602.0
+offset_right = 546.0
+offset_bottom = 635.0
+texture_hover = ExtResource("6_trtic")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="2DSceneButton" type="TextureButton" parent="." unique_id=1679432789]
+offset_left = 6.0
+offset_top = 111.0
+offset_right = 187.0
+offset_bottom = 138.0
+texture_pressed = ExtResource("6_kvuet")
+texture_hover = ExtResource("7_trtic")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="3DSceneButton" type="TextureButton" parent="." unique_id=1003377111]
+offset_left = 6.0
+offset_top = 138.0
+offset_right = 187.0
+offset_bottom = 163.0
+texture_pressed = ExtResource("8_ir15t")
+texture_hover = ExtResource("9_ca42v")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="UserInterfaceButton" type="TextureButton" parent="." unique_id=1817781934]
+offset_left = 6.0
+offset_top = 163.0
+offset_right = 187.0
+offset_bottom = 188.0
+texture_pressed = ExtResource("10_rysoc")
+texture_hover = ExtResource("11_ssvqc")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="OtherNodeButton" type="TextureButton" parent="." unique_id=861498139]
 offset_left = 6.0
 offset_top = 188.0
@@ -80,4 +159,9 @@ texture_hover = ExtResource("7_gee14")
 ignore_texture_size = true
 stretch_mode = 4
 
+[connection signal="gui_input" from="NodeButton" to="." method="_on_node_button_gui_input"]
+[connection signal="pressed" from="CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="2DSceneButton" to="." method="_on_2d_scene_button_pressed"]
+[connection signal="pressed" from="3DSceneButton" to="." method="_on_3d_scene_button_pressed"]
+[connection signal="pressed" from="UserInterfaceButton" to="." method="_on_user_interface_button_pressed"]
 [connection signal="pressed" from="OtherNodeButton" to="." method="_on_other_node_button_pressed"]
