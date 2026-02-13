@@ -12,6 +12,8 @@ enum GameState {
 	CREATE_ROOT_NODE_2,
 	CREATE_ROOT_NODE_3,
 	CREATE_ROOT_NODE_FINISHED,
+	SAVE_1,
+	SAVE_FINISHED,
 }	
 
 var current_game_state = null
@@ -72,6 +74,10 @@ func _process(delta: float) -> void:
 				$TextureRect3.show()
 				$NodeButton.show()
 				
+	# All other process logic
+	if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
+			$RightClickMenu.hide()
+			
 
 func _on_other_node_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_3

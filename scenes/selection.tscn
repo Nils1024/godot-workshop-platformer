@@ -6,6 +6,13 @@
 [node name="Node2D" type="Node2D" unique_id=1242989120]
 script = ExtResource("1_pnwr1")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=775092633]
+offset_left = -15.0
+offset_top = -19.0
+offset_right = 1311.0
+offset_bottom = 748.0
+color = Color(0.36862746, 0.54509807, 0.5529412, 1)
+
 [node name="Control" type="Control" parent="." unique_id=1856332901]
 layout_mode = 3
 anchors_preset = 0
@@ -20,6 +27,7 @@ offset_right = 682.0
 offset_bottom = 200.0
 
 [node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("1_jqogx")]
+visible = false
 mouse_filter = 2
 
 [node name="Timer" type="Timer" parent="FadeTransition" unique_id=776614606]
