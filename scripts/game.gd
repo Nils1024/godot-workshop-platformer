@@ -94,11 +94,13 @@ func _process(delta: float) -> void:
 				$TextureRect5.show()
 				current_game_state = GameState.ADD_PLAYER_1
 			GameState.ADD_PLAYER_1:
-				textbox.queue_text("Right click on your node and add a child node")
+				textbox.queue_text("Right click on your node and click add a child node or just press CTRL + A")
 				current_game_state = GameState.ADD_PLAYER_2
 			GameState.ADD_PLAYER_2:
 				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
 					$RightClickMenu.hide()
+				elif Input.is_action_just_pressed("new_node"):
+					pass
 
 
 func _on_other_node_button_pressed() -> void:
@@ -125,3 +127,6 @@ func _on_node_button_gui_input(event: InputEvent) -> void:
 func _on_save_button_pressed() -> void:
 	if $SaveTextField.text == "main.tscn":
 		current_game_state = GameState.SAVE_FINISHED
+
+func _on_add_child_node_button_pressed() -> void:
+	pass # Replace with function body.

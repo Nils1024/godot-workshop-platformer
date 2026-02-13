@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://qmydasdych8k" path="res://images/UI/3D Scene - pressed.png" id="8_ir15t"]
 [ext_resource type="Texture2D" uid="uid://gyxlfg20pp2k" path="res://images/UI/3D Scene - hover.png" id="9_ca42v"]
 [ext_resource type="Texture2D" uid="uid://ben11t63raoa3" path="res://images/UI/User Interface - pressed.png" id="10_rysoc"]
+[ext_resource type="Texture2D" uid="uid://ihifefvl6om1" path="res://images/UI/Add Child Node - hover.png" id="11_5newe"]
 [ext_resource type="Texture2D" uid="uid://c744dnixokuv0" path="res://images/UI/User Interface - hover.png" id="11_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://ceyuu0reivf7i" path="res://images/UI/Save - hover.png" id="19_264po"]
 
@@ -132,6 +133,16 @@ texture = ExtResource("6_rysoc")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="AddChildNodeButton" type="TextureButton" parent="RightClickMenu" unique_id=540726444]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 167.0
+offset_bottom = 18.0
+texture_hover = ExtResource("11_5newe")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="CreateButton" type="TextureButton" parent="." unique_id=563695680]
 visible = false
 offset_left = 465.0
@@ -206,6 +217,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [connection signal="gui_input" from="NodeButton" to="." method="_on_node_button_gui_input"]
+[connection signal="pressed" from="RightClickMenu/AddChildNodeButton" to="." method="_on_add_child_node_button_pressed"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="2DSceneButton" to="." method="_on_2d_scene_button_pressed"]
 [connection signal="pressed" from="3DSceneButton" to="." method="_on_3d_scene_button_pressed"]
