@@ -13,7 +13,11 @@ enum GameState {
 	CREATE_ROOT_NODE_3,
 	CREATE_ROOT_NODE_FINISHED,
 	SAVE_1,
+	SAVE_2,
+	SAVE_3,
 	SAVE_FINISHED,
+	ADD_PLAYER_1,
+	ADD_PLAYER_2,
 }	
 
 var current_game_state = null
@@ -73,11 +77,29 @@ func _process(delta: float) -> void:
 				$TextureRect.hide()
 				$TextureRect3.show()
 				$NodeButton.show()
-				
-	# All other process logic
-	if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
-			$RightClickMenu.hide()
-			
+				current_game_state = GameState.SAVE_1
+			GameState.SAVE_1:
+				textbox.queue_text("Now that we created our first changes to our game we should save it. Press CTRL + S for it")
+				current_game_state = GameState.SAVE_2
+			GameState.SAVE_2:
+				if Input.is_action_just_pressed("save"):
+					$TextureRect4.show()
+					$SaveTextField.show()
+					$SaveButton.show()
+					textbox.queue_text("Good! Now name it \"main.tscn\"")
+					current_game_state = GameState.SAVE_3
+			GameState.SAVE_FINISHED:
+				$SaveButton.hide()
+				$SaveTextField.hide()
+				$TextureRect5.show()
+				current_game_state = GameState.ADD_PLAYER_1
+			GameState.ADD_PLAYER_1:
+				textbox.queue_text("Right click on your node and add a child node")
+				current_game_state = GameState.ADD_PLAYER_2
+			GameState.ADD_PLAYER_2:
+				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
+					$RightClickMenu.hide()
+
 
 func _on_other_node_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_3
@@ -99,3 +121,7 @@ func _on_node_button_gui_input(event: InputEvent) -> void:
 		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
 			$RightClickMenu.show()
 			$RightClickMenu.global_position = get_viewport().get_mouse_position()
+
+func _on_save_button_pressed() -> void:
+	if $SaveTextField.text == "main.tscn":
+		current_game_state = GameState.SAVE_FINISHED

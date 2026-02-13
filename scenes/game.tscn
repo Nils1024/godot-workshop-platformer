@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://ca0hptbdvu30l" path="res://scenes/util/transition.tscn" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://b0e6nrq3i3b3m" path="res://images/UI/2D Scene - pressed.png" id="6_kvuet"]
 [ext_resource type="Texture2D" uid="uid://tyj0f6rrfexn" path="res://images/UI/Right click menu.png" id="6_rysoc"]
+[ext_resource type="Texture2D" uid="uid://bfca1p4iuep7c" path="res://images/Game/Screenshot 2026-02-08 003457.png" id="6_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://bycjhw2p5bh56" path="res://images/UI/Create - hover.png" id="6_trtic"]
 [ext_resource type="Texture2D" uid="uid://ggvfuhhadfd2" path="res://images/UI/other-node-pressed.png" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://rnt0caoq7kbw" path="res://images/Game/Screenshot 2026-02-08 003550.png" id="7_1kice"]
 [ext_resource type="Texture2D" uid="uid://4cj5bsc50qdg" path="res://images/UI/other-node-hover.png" id="7_gee14"]
 [ext_resource type="Texture2D" uid="uid://dgr2x2w5it16h" path="res://images/UI/Node - hover.png" id="7_rysoc"]
 [ext_resource type="Texture2D" uid="uid://di02fedbinr6b" path="res://images/UI/2D Scene - hover.png" id="7_trtic"]
@@ -17,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://gyxlfg20pp2k" path="res://images/UI/3D Scene - hover.png" id="9_ca42v"]
 [ext_resource type="Texture2D" uid="uid://ben11t63raoa3" path="res://images/UI/User Interface - pressed.png" id="10_rysoc"]
 [ext_resource type="Texture2D" uid="uid://c744dnixokuv0" path="res://images/UI/User Interface - hover.png" id="11_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://ceyuu0reivf7i" path="res://images/UI/Save - hover.png" id="19_264po"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 bg_color = Color(0.9843137, 0.35686275, 0.3529412, 0)
@@ -25,6 +28,9 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_264po"]
+bg_color = Color(0.105882354, 0.105882354, 0.105882354, 1)
 
 [node name="Node" type="Node" unique_id=661730477]
 script = ExtResource("1_lbhrr")
@@ -52,6 +58,23 @@ visible = false
 offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("5_ca42v")
+expand_mode = 3
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=876231240]
+visible = false
+offset_left = 285.0
+offset_top = 99.0
+offset_right = 1172.2131
+offset_bottom = 631.0
+texture = ExtResource("6_ssvqc")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=1566693944]
+visible = false
+offset_right = 1281.0
+offset_bottom = 720.0
+texture = ExtResource("7_1kice")
 expand_mode = 3
 
 [node name="Panel" type="Panel" parent="." unique_id=190060155]
@@ -159,9 +182,33 @@ texture_hover = ExtResource("7_gee14")
 ignore_texture_size = true
 stretch_mode = 4
 
+[node name="SaveTextField" type="TextEdit" parent="." unique_id=143779817]
+visible = false
+offset_left = 440.0
+offset_top = 566.0
+offset_right = 777.0
+offset_bottom = 584.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_264po")
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="SaveButton" type="TextureButton" parent="." unique_id=696941542]
+visible = false
+offset_left = 488.0
+offset_top = 594.0
+offset_right = 569.0
+offset_bottom = 627.0
+texture_hover = ExtResource("19_264po")
+ignore_texture_size = true
+stretch_mode = 4
+
 [connection signal="gui_input" from="NodeButton" to="." method="_on_node_button_gui_input"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="2DSceneButton" to="." method="_on_2d_scene_button_pressed"]
 [connection signal="pressed" from="3DSceneButton" to="." method="_on_3d_scene_button_pressed"]
 [connection signal="pressed" from="UserInterfaceButton" to="." method="_on_user_interface_button_pressed"]
 [connection signal="pressed" from="OtherNodeButton" to="." method="_on_other_node_button_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
