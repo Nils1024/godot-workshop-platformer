@@ -18,6 +18,9 @@ enum GameState {
 	SAVE_FINISHED,
 	ADD_PLAYER_1,
 	ADD_PLAYER_2,
+	ADD_PLAYER_3,
+	ADD_PLAYER_4,
+	ADD_PLAYER_5,
 }	
 
 var current_game_state = null
@@ -100,7 +103,14 @@ func _process(delta: float) -> void:
 				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
 					$RightClickMenu.hide()
 				elif Input.is_action_just_pressed("new_node"):
-					pass
+					$TextureRect6.show()
+					$CharacterBody2DButton.show()
+					$CharacterBody2DCreateButton.show()
+					current_game_state = GameState.ADD_PLAYER_3
+			GameState.ADD_PLAYER_4:
+				textbox.queue_text("Now add a Sprite2D node to the CharacterBody2D")
+				$CharacterBody2DSideButton.show()
+				current_game_state = GameState.ADD_PLAYER_5
 
 
 func _on_other_node_button_pressed() -> void:
@@ -129,4 +139,30 @@ func _on_save_button_pressed() -> void:
 		current_game_state = GameState.SAVE_FINISHED
 
 func _on_add_child_node_button_pressed() -> void:
-	pass # Replace with function body.
+	if current_game_state == GameState.ADD_PLAYER_2:
+		$RightClickMenu.hide()
+		$TextureRect6.show()
+		$CharacterBody2DButton.show()
+		$CharacterBody2DCreateButton.show()
+		current_game_state = GameState.ADD_PLAYER_3
+	elif current_game_state == GameState.ADD_PLAYER_5:
+		$RightClickMenu.hide()
+		$TextureRect9.show()
+	
+func _on_character_body_2d_button_pressed() -> void:
+	$TextureRect6.hide()
+	$TextureRect7.show()
+	
+func _on_character_body_2d_create_button_pressed() -> void:
+	if $TextureRect7.visible:
+		$TextureRect7.hide()
+		$CharacterBody2DCreateButton.hide()
+		$CharacterBody2DButton.hide()
+		$TextureRect8.show()
+		current_game_state = GameState.ADD_PLAYER_4
+		
+func _on_character_body_2d_side_button_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
+			$RightClickMenu.show()
+			$RightClickMenu.global_position = get_viewport().get_mouse_position()
