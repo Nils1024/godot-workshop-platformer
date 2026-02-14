@@ -26,13 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://bx4tuc5c8ad0j" path="res://images/Game/Screenshot 2026-02-13 205725.png" id="11_sww3w"]
 [ext_resource type="Texture2D" uid="uid://dcli4rk8og5vk" path="res://images/Game/Screenshot 2026-02-13 205736.png" id="12_suyxu"]
 [ext_resource type="Texture2D" uid="uid://blg8b1fbvfi4q" path="res://images/Game/Screenshot 2026-02-13 205900.png" id="13_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://cu6s7kvd5xita" path="res://images/Game/Screenshot 2026-02-14 194244.png" id="14_twgab"]
 [ext_resource type="Texture2D" uid="uid://ceyuu0reivf7i" path="res://images/UI/Save - hover.png" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://bdfndbjk1021i" path="res://images/UI/CharacterBody2D - hover.png" id="25_pl11u"]
+[ext_resource type="Texture2D" uid="uid://cqmb1xjht1akt" path="res://images/UI/icon.svg - hover.png" id="29_js0lu"]
 [ext_resource type="Texture2D" uid="uid://dvyoneyqp0wka" path="res://images/UI/CharacterBody2D Side - hover.png" id="29_suyxu"]
 [ext_resource type="Texture2D" uid="uid://b7885amvlbb4a" path="res://images/UI/Sprite2D - hover.png" id="30_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://ca3wlf5a1rnca" path="res://icon.svg" id="31_qouja"]
 [ext_resource type="Texture2D" uid="uid://bj8aqk37kxhs4" path="res://images/Game/Debug Screen.png" id="31_v2yb1"]
 [ext_resource type="Script" uid="uid://cqaygk370tda8" path="res://scripts/player.gd" id="31_wljb1"]
+[ext_resource type="Texture2D" uid="uid://b5w54jkhf4oe5" path="res://images/UI/icon.svg - drag.png" id="33_gxtfn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 bg_color = Color(0.9843137, 0.35686275, 0.3529412, 0)
@@ -44,6 +47,18 @@ border_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_264po"]
 bg_color = Color(0.105882354, 0.105882354, 0.105882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxtfn"]
+bg_color = Color(0.21176471, 0.33333334, 0.88235295, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.21176471, 0.33333334, 0.88235295, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(128, 126)
@@ -145,6 +160,13 @@ visible = false
 offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("13_sgl2t")
+expand_mode = 3
+
+[node name="TextureRect12" type="TextureRect" parent="." unique_id=1455098605]
+visible = false
+offset_right = 1281.0
+offset_bottom = 720.0
+texture = ExtResource("14_twgab")
 expand_mode = 3
 
 [node name="Panel" type="Panel" parent="." unique_id=190060155]
@@ -315,6 +337,24 @@ texture_hover = ExtResource("6_trtic")
 ignore_texture_size = true
 stretch_mode = 4
 
+[node name="IconSVGButton" type="TextureButton" parent="." unique_id=244701098]
+visible = false
+offset_left = 21.0
+offset_top = 485.0
+offset_right = 188.0
+offset_bottom = 507.0
+texture_hover = ExtResource("29_js0lu")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="IconSVGButtonDest" type="Panel" parent="." unique_id=2067698938]
+visible = false
+offset_left = 1184.0
+offset_top = 159.0
+offset_right = 1275.0
+offset_bottom = 185.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gxtfn")
+
 [node name="RightClickMenu" type="TextureRect" parent="." unique_id=774863649]
 visible = false
 offset_left = 263.0
@@ -345,6 +385,16 @@ texture = ExtResource("31_v2yb1")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="IconSVGDragIcon" type="TextureRect" parent="." unique_id=1392969863]
+visible = false
+offset_left = 251.0
+offset_top = 508.0
+offset_right = 302.2903
+offset_bottom = 523.0
+texture = ExtResource("33_gxtfn")
+expand_mode = 3
+stretch_mode = 4
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=421697870]
 visible = false
 position = Vector2(460, 340)
@@ -368,4 +418,5 @@ shape = SubResource("RectangleShape2D_js0lu")
 [connection signal="gui_input" from="CharacterBody2DSideButton" to="." method="_on_character_body_2d_side_button_gui_input"]
 [connection signal="pressed" from="Sprite2DButton" to="." method="_on_sprite_2d_button_pressed"]
 [connection signal="pressed" from="Sprite2DCreateButton" to="." method="_on_sprite_2d_create_button_pressed"]
+[connection signal="gui_input" from="IconSVGButton" to="." method="_on_icon_svg_button_gui_input"]
 [connection signal="pressed" from="RightClickMenu/AddChildNodeButton" to="." method="_on_add_child_node_button_pressed"]

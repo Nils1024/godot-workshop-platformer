@@ -23,9 +23,12 @@ enum GameState {
 	ADD_PLAYER_5,
 	ADD_PLAYER_6,
 	ADD_PLAYER_7,
+	ADD_PlAYER_8,
+	ADD_PLAYER_SCRIPT_1,
 }	
 
 var current_game_state = null
+var is_dragging := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,7 +43,7 @@ func _ready() -> void:
 	
 	current_game_state = GameState.INTRO
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if textbox.text_queue.is_empty() and textbox.current_state == textbox.State.READY:
 		match current_game_state:
 			GameState.INTRO:
@@ -122,8 +125,12 @@ func _process(delta: float) -> void:
 					$CharacterBody2DCreateButton.show()
 					current_game_state = GameState.ADD_PLAYER_3
 			GameState.ADD_PLAYER_6:
-				textbox.queue_text("Good")
+				textbox.queue_text("Now we want to add a character image. For that move the icon.svg from your file explorer to the texture field in your inspector.")
+				$IconSVGButton.show()
 				current_game_state = GameState.ADD_PLAYER_7
+			GameState.ADD_PlAYER_8:
+				textbox.queue_text("Right click on the CharacterBody2D and attach a script")
+				current_game_state = GameState.ADD_PLAYER_SCRIPT_1
 
 
 func _on_other_node_button_pressed() -> void:
@@ -193,3 +200,36 @@ func _on_sprite_2d_create_button_pressed() -> void:
 		$Sprite2DCreateButton.hide()
 		$TextureRect11.show()
 		current_game_state = GameState.ADD_PLAYER_6
+		
+func _on_icon_svg_button_gui_input(event: InputEvent) -> void:
+	if current_game_state == GameState.ADD_PLAYER_7:
+		if event is InputEventMouseButton:
+			if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.pressed:
+				is_dragging = true
+				$IconSVGDragIcon.show()
+				$IconSVGDragIcon.global_position = get_viewport().get_mouse_position()
+	
+func _input(event: InputEvent) -> void:
+	if not is_dragging:
+		return
+
+	var mouse_pos = get_viewport().get_mouse_position()
+
+	if event is InputEventMouseMotion:
+		$IconSVGDragIcon.global_position = mouse_pos + Vector2(20, 20)
+		
+		if $IconSVGButtonDest.get_global_rect().has_point(mouse_pos):
+			$IconSVGButtonDest.show()
+		else:
+			$IconSVGButtonDest.hide()
+
+	elif event is InputEventMouseButton:
+		if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and not event.pressed:
+			is_dragging = false
+			$IconSVGDragIcon.hide()
+			
+			if $IconSVGButtonDest.get_global_rect().has_point(mouse_pos):
+				$IconSVGButton.hide() 
+				$TextureRect12.show()
+				$IconSVGButtonDest.hide()
+				current_game_state = GameState.ADD_PlAYER_8
