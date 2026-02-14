@@ -29,6 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://ceyuu0reivf7i" path="res://images/UI/Save - hover.png" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://bdfndbjk1021i" path="res://images/UI/CharacterBody2D - hover.png" id="25_pl11u"]
 [ext_resource type="Texture2D" uid="uid://dvyoneyqp0wka" path="res://images/UI/CharacterBody2D Side - hover.png" id="29_suyxu"]
+[ext_resource type="Texture2D" uid="uid://b7885amvlbb4a" path="res://images/UI/Sprite2D - hover.png" id="30_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://ca3wlf5a1rnca" path="res://icon.svg" id="31_qouja"]
+[ext_resource type="Texture2D" uid="uid://bj8aqk37kxhs4" path="res://images/Game/Debug Screen.png" id="31_v2yb1"]
+[ext_resource type="Script" uid="uid://cqaygk370tda8" path="res://scripts/player.gd" id="31_wljb1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 bg_color = Color(0.9843137, 0.35686275, 0.3529412, 0)
@@ -40,6 +44,9 @@ border_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_264po"]
 bg_color = Color(0.105882354, 0.105882354, 0.105882354, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
+size = Vector2(128, 126)
 
 [node name="Node" type="Node" unique_id=661730477]
 script = ExtResource("1_lbhrr")
@@ -185,26 +192,6 @@ texture_hover = ExtResource("7_rysoc")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="RightClickMenu" type="TextureRect" parent="." unique_id=774863649]
-visible = false
-offset_left = 263.0
-offset_top = 161.0
-offset_right = 432.3512
-offset_bottom = 353.0
-texture = ExtResource("6_rysoc")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="AddChildNodeButton" type="TextureButton" parent="RightClickMenu" unique_id=540726444]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 167.0
-offset_bottom = 18.0
-texture_hover = ExtResource("11_5newe")
-ignore_texture_size = true
-stretch_mode = 4
-
 [node name="CreateButton" type="TextureButton" parent="." unique_id=563695680]
 visible = false
 offset_left = 465.0
@@ -308,8 +295,68 @@ texture_hover = ExtResource("29_suyxu")
 ignore_texture_size = true
 stretch_mode = 4
 
+[node name="Sprite2DButton" type="TextureButton" parent="." unique_id=613184196]
+visible = false
+offset_left = 427.0
+offset_top = 270.0
+offset_right = 918.0
+offset_bottom = 294.0
+texture_hover = ExtResource("30_sgl2t")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Sprite2DCreateButton" type="TextureButton" parent="." unique_id=2006343654]
+visible = false
+offset_left = 436.0
+offset_top = 599.0
+offset_right = 517.0
+offset_bottom = 632.0
+texture_hover = ExtResource("6_trtic")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="RightClickMenu" type="TextureRect" parent="." unique_id=774863649]
+visible = false
+offset_left = 263.0
+offset_top = 161.0
+offset_right = 432.3512
+offset_bottom = 353.0
+texture = ExtResource("6_rysoc")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="AddChildNodeButton" type="TextureButton" parent="RightClickMenu" unique_id=540726444]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 167.0
+offset_bottom = 18.0
+texture_hover = ExtResource("11_5newe")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Debug Screen" type="TextureRect" parent="." unique_id=110708485]
+visible = false
+offset_left = 145.0
+offset_top = 97.0
+offset_right = 1253.0
+offset_bottom = 682.0
+texture = ExtResource("31_v2yb1")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=421697870]
+visible = false
+position = Vector2(460, 340)
+script = ExtResource("31_wljb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=93169522]
+texture = ExtResource("31_qouja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1859702434]
+shape = SubResource("RectangleShape2D_js0lu")
+
 [connection signal="gui_input" from="NodeButton" to="." method="_on_node_button_gui_input"]
-[connection signal="pressed" from="RightClickMenu/AddChildNodeButton" to="." method="_on_add_child_node_button_pressed"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="2DSceneButton" to="." method="_on_2d_scene_button_pressed"]
 [connection signal="pressed" from="3DSceneButton" to="." method="_on_3d_scene_button_pressed"]
@@ -319,3 +366,6 @@ stretch_mode = 4
 [connection signal="pressed" from="CharacterBody2DButton" to="." method="_on_character_body_2d_button_pressed"]
 [connection signal="pressed" from="CharacterBody2DCreateButton" to="." method="_on_character_body_2d_create_button_pressed"]
 [connection signal="gui_input" from="CharacterBody2DSideButton" to="." method="_on_character_body_2d_side_button_gui_input"]
+[connection signal="pressed" from="Sprite2DButton" to="." method="_on_sprite_2d_button_pressed"]
+[connection signal="pressed" from="Sprite2DCreateButton" to="." method="_on_sprite_2d_create_button_pressed"]
+[connection signal="pressed" from="RightClickMenu/AddChildNodeButton" to="." method="_on_add_child_node_button_pressed"]

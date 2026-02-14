@@ -21,6 +21,8 @@ enum GameState {
 	ADD_PLAYER_3,
 	ADD_PLAYER_4,
 	ADD_PLAYER_5,
+	ADD_PLAYER_6,
+	ADD_PLAYER_7,
 }	
 
 var current_game_state = null
@@ -111,6 +113,17 @@ func _process(delta: float) -> void:
 				textbox.queue_text("Now add a Sprite2D node to the CharacterBody2D")
 				$CharacterBody2DSideButton.show()
 				current_game_state = GameState.ADD_PLAYER_5
+			GameState.ADD_PLAYER_5:
+				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
+					$RightClickMenu.hide()
+				elif Input.is_action_just_pressed("new_node"):
+					$TextureRect6.show()
+					$CharacterBody2DButton.show()
+					$CharacterBody2DCreateButton.show()
+					current_game_state = GameState.ADD_PLAYER_3
+			GameState.ADD_PLAYER_6:
+				textbox.queue_text("Good")
+				current_game_state = GameState.ADD_PLAYER_7
 
 
 func _on_other_node_button_pressed() -> void:
@@ -148,6 +161,8 @@ func _on_add_child_node_button_pressed() -> void:
 	elif current_game_state == GameState.ADD_PLAYER_5:
 		$RightClickMenu.hide()
 		$TextureRect9.show()
+		$Sprite2DButton.show()
+		$Sprite2DCreateButton.show()
 	
 func _on_character_body_2d_button_pressed() -> void:
 	$TextureRect6.hide()
@@ -166,3 +181,15 @@ func _on_character_body_2d_side_button_gui_input(event: InputEvent) -> void:
 		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
 			$RightClickMenu.show()
 			$RightClickMenu.global_position = get_viewport().get_mouse_position()
+
+func _on_sprite_2d_button_pressed() -> void:
+	$TextureRect9.hide()
+	$TextureRect10.show()
+
+func _on_sprite_2d_create_button_pressed() -> void:
+	if $TextureRect10.visible:
+		$TextureRect10.hide()
+		$Sprite2DButton.hide()
+		$Sprite2DCreateButton.hide()
+		$TextureRect11.show()
+		current_game_state = GameState.ADD_PLAYER_6
