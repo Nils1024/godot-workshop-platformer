@@ -25,6 +25,8 @@ enum GameState {
 	ADD_PLAYER_7,
 	ADD_PlAYER_8,
 	ADD_PLAYER_SCRIPT_1,
+	ADD_PLAYER_SCRIPT_2,
+	ADD_PLAYER_SCRIPT_3,
 }	
 
 var current_game_state = null
@@ -113,6 +115,7 @@ func _process(_delta: float) -> void:
 					$CharacterBody2DCreateButton.show()
 					current_game_state = GameState.ADD_PLAYER_3
 			GameState.ADD_PLAYER_4:
+				$NodeButton.hide()
 				textbox.queue_text("Now add a Sprite2D node to the CharacterBody2D")
 				$CharacterBody2DSideButton.show()
 				current_game_state = GameState.ADD_PLAYER_5
@@ -120,18 +123,30 @@ func _process(_delta: float) -> void:
 				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
 					$RightClickMenu.hide()
 				elif Input.is_action_just_pressed("new_node"):
-					$TextureRect6.show()
-					$CharacterBody2DButton.show()
-					$CharacterBody2DCreateButton.show()
-					current_game_state = GameState.ADD_PLAYER_3
+					$RightClickMenu.hide()
+					$TextureRect9.show()
+					$Sprite2DButton.show()
+					$Sprite2DCreateButton.show()
 			GameState.ADD_PLAYER_6:
 				textbox.queue_text("Now we want to add a character image. For that move the icon.svg from your file explorer to the texture field in your inspector.")
 				$IconSVGButton.show()
 				current_game_state = GameState.ADD_PLAYER_7
 			GameState.ADD_PlAYER_8:
 				textbox.queue_text("Right click on the CharacterBody2D and attach a script")
+				$RightClickMenu/AttachScriptButton.show()
+				$RightClickMenu/AddChildNodeButton.hide()
 				current_game_state = GameState.ADD_PLAYER_SCRIPT_1
-
+			GameState.ADD_PLAYER_SCRIPT_1:
+				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
+					$RightClickMenu.hide()
+			GameState.ADD_PLAYER_SCRIPT_2:
+				textbox.queue_text("As you can see here you can program your player with GDScript")
+				textbox.queue_text("For simplicity I change the template script a bit for you so you can directly see some results")
+				textbox.queue_text("When you are ready press the play button in the upper right corner and see what you have created")
+				current_game_state = GameState.ADD_PLAYER_SCRIPT_3
+			GameState.ADD_PLAYER_SCRIPT_3:
+				$TextureRect15.show()
+				$PlayButton.show()
 
 func _on_other_node_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_3
@@ -149,7 +164,7 @@ func _on_create_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_FINISHED
 
 func _on_node_button_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and current_game_state == GameState.ADD_PLAYER_1:
 		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
 			$RightClickMenu.show()
 			$RightClickMenu.global_position = get_viewport().get_mouse_position()
@@ -233,3 +248,18 @@ func _input(event: InputEvent) -> void:
 				$TextureRect12.show()
 				$IconSVGButtonDest.hide()
 				current_game_state = GameState.ADD_PlAYER_8
+
+func _on_attach_script_button_pressed() -> void:
+	$RightClickMenu.hide()
+	$TextureRect13.show()
+	$CreateScriptButton.show()
+
+func _on_create_script_button_pressed() -> void:
+	$TextureRect13.hide()
+	$CreateScriptButton.hide()
+	$TextureRect14.show()
+	current_game_state = GameState.ADD_PLAYER_SCRIPT_2
+
+func _on_play_button_pressed() -> void:
+	$"Debug Screen".show()
+	$CharacterBody2D.show()

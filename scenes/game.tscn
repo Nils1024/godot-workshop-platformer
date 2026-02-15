@@ -27,6 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://dcli4rk8og5vk" path="res://images/Game/Screenshot 2026-02-13 205736.png" id="12_suyxu"]
 [ext_resource type="Texture2D" uid="uid://blg8b1fbvfi4q" path="res://images/Game/Screenshot 2026-02-13 205900.png" id="13_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://cu6s7kvd5xita" path="res://images/Game/Screenshot 2026-02-14 194244.png" id="14_twgab"]
+[ext_resource type="Texture2D" uid="uid://btflntugne5li" path="res://images/Game/Screenshot 2026-02-15 110733.png" id="15_7025r"]
+[ext_resource type="Texture2D" uid="uid://bl57aekbhljr3" path="res://images/Game/Screenshot 2026-02-15 110754.png" id="16_m4url"]
+[ext_resource type="Texture2D" uid="uid://fdbehu6ohl6x" path="res://images/Game/Screenshot 2026-02-15 120312.png" id="17_m4url"]
 [ext_resource type="Texture2D" uid="uid://ceyuu0reivf7i" path="res://images/UI/Save - hover.png" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://bdfndbjk1021i" path="res://images/UI/CharacterBody2D - hover.png" id="25_pl11u"]
 [ext_resource type="Texture2D" uid="uid://cqmb1xjht1akt" path="res://images/UI/icon.svg - hover.png" id="29_js0lu"]
@@ -35,7 +38,9 @@
 [ext_resource type="Texture2D" uid="uid://ca3wlf5a1rnca" path="res://icon.svg" id="31_qouja"]
 [ext_resource type="Texture2D" uid="uid://bj8aqk37kxhs4" path="res://images/Game/Debug Screen.png" id="31_v2yb1"]
 [ext_resource type="Script" uid="uid://cqaygk370tda8" path="res://scripts/player.gd" id="31_wljb1"]
+[ext_resource type="Texture2D" uid="uid://c3nogq78mmmxo" path="res://images/UI/Attach Script - hover.png" id="32_02fa5"]
 [ext_resource type="Texture2D" uid="uid://b5w54jkhf4oe5" path="res://images/UI/icon.svg - drag.png" id="33_gxtfn"]
+[ext_resource type="Texture2D" uid="uid://cavmjnvawe8na" path="res://images/UI/play - hover.png" id="37_8ool0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 bg_color = Color(0.9843137, 0.35686275, 0.3529412, 0)
@@ -167,6 +172,30 @@ visible = false
 offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("14_twgab")
+expand_mode = 3
+
+[node name="TextureRect13" type="TextureRect" parent="." unique_id=191923140]
+visible = false
+offset_left = 379.0
+offset_top = 179.0
+offset_right = 736.412
+offset_bottom = 521.0
+texture = ExtResource("15_7025r")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="TextureRect14" type="TextureRect" parent="." unique_id=235539294]
+visible = false
+offset_right = 1281.0
+offset_bottom = 720.0
+texture = ExtResource("16_m4url")
+expand_mode = 3
+
+[node name="TextureRect15" type="TextureRect" parent="." unique_id=1487936758]
+visible = false
+offset_right = 1281.0
+offset_bottom = 720.0
+texture = ExtResource("17_m4url")
 expand_mode = 3
 
 [node name="Panel" type="Panel" parent="." unique_id=190060155]
@@ -355,6 +384,16 @@ offset_right = 1275.0
 offset_bottom = 185.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gxtfn")
 
+[node name="CreateScriptButton" type="TextureButton" parent="." unique_id=461909023]
+visible = false
+offset_left = 447.0
+offset_top = 486.0
+offset_right = 528.0
+offset_bottom = 519.0
+texture_hover = ExtResource("6_trtic")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="RightClickMenu" type="TextureRect" parent="." unique_id=774863649]
 visible = false
 offset_left = 263.0
@@ -365,6 +404,17 @@ texture = ExtResource("6_rysoc")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="AttachScriptButton" type="TextureButton" parent="RightClickMenu" unique_id=234697101]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 70.0
+offset_right = 167.0
+offset_bottom = 86.0
+texture_hover = ExtResource("32_02fa5")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="AddChildNodeButton" type="TextureButton" parent="RightClickMenu" unique_id=540726444]
 layout_mode = 0
 offset_left = 1.0
@@ -372,6 +422,16 @@ offset_top = 1.0
 offset_right = 167.0
 offset_bottom = 18.0
 texture_hover = ExtResource("11_5newe")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="PlayButton" type="TextureButton" parent="." unique_id=1280843270]
+visible = false
+offset_left = 1072.0
+offset_top = 18.0
+offset_right = 1093.0
+offset_bottom = 40.0
+texture_hover = ExtResource("37_8ool0")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -419,4 +479,7 @@ shape = SubResource("RectangleShape2D_js0lu")
 [connection signal="pressed" from="Sprite2DButton" to="." method="_on_sprite_2d_button_pressed"]
 [connection signal="pressed" from="Sprite2DCreateButton" to="." method="_on_sprite_2d_create_button_pressed"]
 [connection signal="gui_input" from="IconSVGButton" to="." method="_on_icon_svg_button_gui_input"]
+[connection signal="pressed" from="CreateScriptButton" to="." method="_on_create_script_button_pressed"]
+[connection signal="pressed" from="RightClickMenu/AttachScriptButton" to="." method="_on_attach_script_button_pressed"]
 [connection signal="pressed" from="RightClickMenu/AddChildNodeButton" to="." method="_on_add_child_node_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
