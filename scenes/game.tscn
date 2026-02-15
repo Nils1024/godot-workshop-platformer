@@ -68,6 +68,12 @@ corner_radius_bottom_left = 6
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js0lu"]
 size = Vector2(128, 126)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ool0"]
+size = Vector2(39.5, 595)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1ej"]
+size = Vector2(959, 44)
+
 [node name="Node" type="Node" unique_id=661730477]
 script = ExtResource("1_lbhrr")
 
@@ -465,6 +471,24 @@ texture = ExtResource("31_qouja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1859702434]
 shape = SubResource("RectangleShape2D_js0lu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=31126108]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1843927902]
+position = Vector2(153, 420.5)
+shape = SubResource("RectangleShape2D_8ool0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=920726336]
+position = Vector2(651.5, 698)
+shape = SubResource("RectangleShape2D_pr1ej")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1517805908]
+position = Vector2(1112, 424)
+shape = SubResource("RectangleShape2D_8ool0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1527371182]
+position = Vector2(635, 137)
+shape = SubResource("RectangleShape2D_pr1ej")
 
 [connection signal="gui_input" from="NodeButton" to="." method="_on_node_button_gui_input"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_create_button_pressed"]

@@ -27,6 +27,8 @@ enum GameState {
 	ADD_PLAYER_SCRIPT_1,
 	ADD_PLAYER_SCRIPT_2,
 	ADD_PLAYER_SCRIPT_3,
+	ADD_PLAYER_SCRIPT_4,
+	ADD_PLAYER_SCRIPT_5,
 }	
 
 var current_game_state = null
@@ -140,13 +142,25 @@ func _process(_delta: float) -> void:
 				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
 					$RightClickMenu.hide()
 			GameState.ADD_PLAYER_SCRIPT_2:
-				textbox.queue_text("As you can see here you can program your player with GDScript")
+				textbox.offset = textbox.offset + Vector2(400, 0)
+				textbox.queue_text("As you can see here you can program your player with GDScript (Which is similar to Python)")
 				textbox.queue_text("For simplicity I change the template script a bit for you so you can directly see some results")
 				textbox.queue_text("When you are ready press the play button in the upper right corner and see what you have created")
 				current_game_state = GameState.ADD_PLAYER_SCRIPT_3
 			GameState.ADD_PLAYER_SCRIPT_3:
 				$TextureRect15.show()
 				$PlayButton.show()
+			GameState.ADD_PLAYER_SCRIPT_4:
+				textbox.offset = textbox.offset - Vector2(400, 0)
+				textbox.queue_text("Here is the debug window, where you can test your game.")
+				textbox.queue_text("With our player we created we can move around using W, A, S, D")
+				textbox.queue_text("When you finished testing your game, press esc to end the tutorial")
+				current_game_state = GameState.ADD_PLAYER_SCRIPT_5
+			GameState.ADD_PLAYER_SCRIPT_5:
+				if Input.is_action_just_pressed("esc"):
+					textbox.queue_text("I hope you had fun following this tutorial and that you learnt something.")
+					textbox.queue_text("Now its your turn! Hop in Godot and create something magical :)")
+					get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_other_node_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_3
@@ -164,7 +178,7 @@ func _on_create_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_FINISHED
 
 func _on_node_button_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and current_game_state == GameState.ADD_PLAYER_1:
+	if event is InputEventMouseButton and current_game_state == GameState.ADD_PLAYER_2:
 		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
 			$RightClickMenu.show()
 			$RightClickMenu.global_position = get_viewport().get_mouse_position()
@@ -172,6 +186,8 @@ func _on_node_button_gui_input(event: InputEvent) -> void:
 func _on_save_button_pressed() -> void:
 	if $SaveTextField.text == "main.tscn":
 		current_game_state = GameState.SAVE_FINISHED
+	else:
+		textbox.queue_text("Please name it \"main.tscn\"")
 
 func _on_add_child_node_button_pressed() -> void:
 	if current_game_state == GameState.ADD_PLAYER_2:
@@ -263,3 +279,4 @@ func _on_create_script_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	$"Debug Screen".show()
 	$CharacterBody2D.show()
+	current_game_state = GameState.ADD_PLAYER_SCRIPT_4
