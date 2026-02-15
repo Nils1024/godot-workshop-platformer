@@ -236,7 +236,6 @@ offset_bottom = 691.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_lbhrr")
 
 [node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("5_iywne")]
-visible = false
 mouse_filter = 2
 
 [node name="NodeButton" type="TextureButton" parent="." unique_id=746004739]

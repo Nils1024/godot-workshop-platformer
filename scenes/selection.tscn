@@ -2,6 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://ca0hptbdvu30l" path="res://scenes/util/transition.tscn" id="1_jqogx"]
 [ext_resource type="Script" uid="uid://dx7thot27bmtm" path="res://scripts/selection_menu.gd" id="1_pnwr1"]
+[ext_resource type="Texture2D" uid="uid://6oh4ylohyspu" path="res://images/UI/01 - First Game.png" id="2_ahe6p"]
+[ext_resource type="Texture2D" uid="uid://b6hs2pcc5tsen" path="res://images/UI/01 - First game - clicked.png" id="3_4vfjc"]
+[ext_resource type="Texture2D" uid="uid://dpd5qnfvm6pd2" path="res://images/UI/01 - First game - hover.png" id="4_sjef4"]
+[ext_resource type="Texture2D" uid="uid://wvd4e1vrmwck" path="res://images/UI/Select a Tutorial.png" id="6_4vfjc"]
+[ext_resource type="Texture2D" uid="uid://dl5r44tuapfna" path="res://images/UI/02 - Working with Tilemaps.png" id="7_sjef4"]
 
 [node name="Node2D" type="Node2D" unique_id=1242989120]
 script = ExtResource("1_pnwr1")
@@ -19,15 +24,38 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Level_1" type="Button" parent="Control" unique_id=2138092246]
+[node name="Level_1" type="TextureButton" parent="Control" unique_id=1538369743]
 layout_mode = 0
-offset_left = 608.0
-offset_top = 159.0
-offset_right = 682.0
-offset_bottom = 200.0
+offset_left = 835.0
+offset_top = 206.0
+offset_right = 1151.0
+offset_bottom = 313.0
+texture_normal = ExtResource("2_ahe6p")
+texture_pressed = ExtResource("3_4vfjc")
+texture_hover = ExtResource("4_sjef4")
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=10649708]
+offset_left = 396.0
+offset_top = 24.0
+offset_right = 883.0
+offset_bottom = 94.0
+texture = ExtResource("6_4vfjc")
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1928079137]
+offset_left = 683.0
+offset_top = 307.0
+offset_right = 1269.0
+offset_bottom = 454.0
+texture = ExtResource("7_sjef4")
+stretch_mode = 4
+
+[node name="Line2D" type="Line2D" parent="." unique_id=673820574]
+points = PackedVector2Array(691, 326, 1268, 416)
+default_color = Color(1, 0, 0, 0.5647059)
 
 [node name="FadeTransition" parent="." unique_id=538090346 instance=ExtResource("1_jqogx")]
-visible = false
 mouse_filter = 2
 
 [node name="Timer" type="Timer" parent="FadeTransition" unique_id=776614606]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1jinkuijhpm5"
-path="res://.godot/imported/Create Your Own Game!.png-5ffa6bcf5c10c78312290786fd20e20c.ctex"
+uid="uid://b6hs2pcc5tsen"
+path="res://.godot/imported/01 - First game - clicked.png-fa349c677fb4805a40b957b5f11bfad9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/UI/Create Your Own Game!.png"
-dest_files=["res://.godot/imported/Create Your Own Game!.png-5ffa6bcf5c10c78312290786fd20e20c.ctex"]
+source_file="res://images/UI/01 - First game - clicked.png"
+dest_files=["res://.godot/imported/01 - First game - clicked.png-fa349c677fb4805a40b957b5f11bfad9.ctex"]
 
 [params]
 

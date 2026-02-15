@@ -1,13 +1,13 @@
 # First Time Godot?
 
-First Time Godot is an interactive tutorial game to learn Godot
+First Time Godot is an interactive tutorial game that helps you learn Godot.
 
 Itch.io: https://nils1024.itch.io/first-time-godot
 
-## How to play?
-1. Select "Create your own game!"
-2. Select the tutorial you wish to play
-3. Follow the instructions
+## How to Play
+1. Select "Create Your Own Game!"
+2. Choose the tutorial you want to play.
+3. Follow the instructions.
 
 ## Screenshots
 ![Main](./.github/Main.png)
@@ -23,5 +23,5 @@ Itch.io: https://nils1024.itch.io/first-time-godot
 3. Add the Web preset
     1. Click "Manage Export Templates"
     2. Click "Download and Install"
-    3. Click Close when it finished downloading
-4. Click Export Project
+    3. Click "Close" once the download has finished
+4. Click "Export Project"

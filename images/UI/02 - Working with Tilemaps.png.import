@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1jinkuijhpm5"
-path="res://.godot/imported/Create Your Own Game!.png-5ffa6bcf5c10c78312290786fd20e20c.ctex"
+uid="uid://dl5r44tuapfna"
+path="res://.godot/imported/02 - Working with Tilemaps.png-af58e841f9d7c5f9773cc1f83d8cb951.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/UI/Create Your Own Game!.png"
-dest_files=["res://.godot/imported/Create Your Own Game!.png-5ffa6bcf5c10c78312290786fd20e20c.ctex"]
+source_file="res://images/UI/02 - Working with Tilemaps.png"
+dest_files=["res://.godot/imported/02 - Working with Tilemaps.png-af58e841f9d7c5f9773cc1f83d8cb951.ctex"]
 
 [params]
 

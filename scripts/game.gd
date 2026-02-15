@@ -29,6 +29,7 @@ enum GameState {
 	ADD_PLAYER_SCRIPT_3,
 	ADD_PLAYER_SCRIPT_4,
 	ADD_PLAYER_SCRIPT_5,
+	END
 }	
 
 var current_game_state = null
@@ -42,7 +43,7 @@ func _ready() -> void:
 	await Util.wait(1)
 	
 	textbox.queue_text("Hello, welcome to Godot!")
-	textbox.queue_text("In this small tutorial, you will build a 2D game with a player that can run and jump around.")
+	textbox.queue_text("In this small tutorial, you will build a 2D game with a moveable player.")
 	textbox.queue_text("First of all I want to show you all the important areas of Godot.")
 	
 	current_game_state = GameState.INTRO
@@ -57,24 +58,24 @@ func _process(_delta: float) -> void:
 			GameState.NODE_INTRO:
 				$Panel.hide()
 				$Panel2.show()
-				textbox.queue_text("This is your file explorer. Here you will find all your files and folders (e.g. images, scenes and code).")
+				textbox.queue_text("This is your FileSystem. Here you will find all your files and folders (e.g. images, scenes and code).")
 				current_game_state = GameState.FILE_INTRO
 			GameState.FILE_INTRO:
 				$Panel2.hide()
 				$Panel3.show()
-				textbox.queue_text("This is your inspector. When you selected a node, you can edit all its properties in here.")
+				textbox.queue_text("This is your Inspector. When you selected a node, you can edit all its properties in here.")
 				current_game_state = GameState.INSPECTOR_INTRO
 			GameState.INSPECTOR_INTRO:
 				$Panel3.hide()
 				$Panel4.show()
-				textbox.queue_text("This is your Main viewport. Here you can see what your game looks like.")
+				textbox.queue_text("This is your Viewport. Here you can see your currently opened scene.")
 				current_game_state = GameState.WORKSPACE_INTRO
 			GameState.WORKSPACE_INTRO:
 				$Panel4.hide()
 				textbox.queue_text("Now you know what you probably need the most. Let's start creating your first game!")
 				current_game_state = GameState.CREATE_ROOT_NODE_1
 			GameState.CREATE_ROOT_NODE_1:
-				textbox.queue_text("In the Scene section, choose Other Node and select Node.")
+				textbox.queue_text("In the Scene section, choose Other Node and click \"Create\".")
 				current_game_state = GameState.CREATE_ROOT_NODE_2
 			GameState.CREATE_ROOT_NODE_3:
 				$TextureRect2.show()
@@ -91,14 +92,14 @@ func _process(_delta: float) -> void:
 				$NodeButton.show()
 				current_game_state = GameState.SAVE_1
 			GameState.SAVE_1:
-				textbox.queue_text("Now that we created our first changes to our game we should save it. Press CTRL + S for it")
+				textbox.queue_text("Now that we have made our first changes to the game, we should save them. Press CTRL + S to do so.")
 				current_game_state = GameState.SAVE_2
 			GameState.SAVE_2:
 				if Input.is_action_just_pressed("save"):
 					$TextureRect4.show()
 					$SaveTextField.show()
 					$SaveButton.show()
-					textbox.queue_text("Good! Now name it \"main.tscn\"")
+					textbox.queue_text("Good! Now name it \"main.tscn\" and press \"Save\"")
 					current_game_state = GameState.SAVE_3
 			GameState.SAVE_FINISHED:
 				$SaveButton.hide()
@@ -106,7 +107,7 @@ func _process(_delta: float) -> void:
 				$TextureRect5.show()
 				current_game_state = GameState.ADD_PLAYER_1
 			GameState.ADD_PLAYER_1:
-				textbox.queue_text("Right click on your node and click add a child node or just press CTRL + A")
+				textbox.queue_text("Right-click on your node and select \"Add Child Node...\" (or press CTRL + A) to add a CharacterBody2D.")
 				current_game_state = GameState.ADD_PLAYER_2
 			GameState.ADD_PLAYER_2:
 				if Input.is_action_just_pressed("left_click") and $RightClickMenu.visible and !$RightClickMenu.get_rect().has_point(get_viewport().get_mouse_position()):
@@ -118,7 +119,7 @@ func _process(_delta: float) -> void:
 					current_game_state = GameState.ADD_PLAYER_3
 			GameState.ADD_PLAYER_4:
 				$NodeButton.hide()
-				textbox.queue_text("Now add a Sprite2D node to the CharacterBody2D")
+				textbox.queue_text("Now add a Sprite2D node to the CharacterBody2D.")
 				$CharacterBody2DSideButton.show()
 				current_game_state = GameState.ADD_PLAYER_5
 			GameState.ADD_PLAYER_5:
@@ -130,11 +131,11 @@ func _process(_delta: float) -> void:
 					$Sprite2DButton.show()
 					$Sprite2DCreateButton.show()
 			GameState.ADD_PLAYER_6:
-				textbox.queue_text("Now we want to add a character image. For that move the icon.svg from your file explorer to the texture field in your inspector.")
+				textbox.queue_text("Now, we want to add a character image. To do this, drag the icon.svg file from the FileSystems tab to the texture field in your Inspector.")
 				$IconSVGButton.show()
 				current_game_state = GameState.ADD_PLAYER_7
 			GameState.ADD_PlAYER_8:
-				textbox.queue_text("Right click on the CharacterBody2D and attach a script")
+				textbox.queue_text("Right-click on the CharacterBody2D and attach a script")
 				$RightClickMenu/AttachScriptButton.show()
 				$RightClickMenu/AddChildNodeButton.hide()
 				current_game_state = GameState.ADD_PLAYER_SCRIPT_1
@@ -143,24 +144,26 @@ func _process(_delta: float) -> void:
 					$RightClickMenu.hide()
 			GameState.ADD_PLAYER_SCRIPT_2:
 				textbox.offset = textbox.offset + Vector2(400, 0)
-				textbox.queue_text("As you can see here you can program your player with GDScript (Which is similar to Python)")
-				textbox.queue_text("For simplicity I change the template script a bit for you so you can directly see some results")
-				textbox.queue_text("When you are ready press the play button in the upper right corner and see what you have created")
+				textbox.queue_text("As you can see, you can program your player using GDScript, which is similar to Python.")
+				textbox.queue_text("To keep things simple, I changed the template script slightly so that you can see the results immediately.")
+				textbox.queue_text("When you are ready press the play button in the top right corner to see your creation.")
 				current_game_state = GameState.ADD_PLAYER_SCRIPT_3
 			GameState.ADD_PLAYER_SCRIPT_3:
 				$TextureRect15.show()
 				$PlayButton.show()
 			GameState.ADD_PLAYER_SCRIPT_4:
 				textbox.offset = textbox.offset - Vector2(400, 0)
-				textbox.queue_text("Here is the debug window, where you can test your game.")
-				textbox.queue_text("With our player we created we can move around using W, A, S, D")
-				textbox.queue_text("When you finished testing your game, press esc to end the tutorial")
+				textbox.queue_text("This is the debug window where you can test your game.")
+				textbox.queue_text("With the script we have created before in our CharacterBody2D, we can move around using W, A, S, D.")
+				textbox.queue_text("When you have finished testing your game, press Esc to end the tutorial.")
 				current_game_state = GameState.ADD_PLAYER_SCRIPT_5
 			GameState.ADD_PLAYER_SCRIPT_5:
 				if Input.is_action_just_pressed("esc"):
 					textbox.queue_text("I hope you had fun following this tutorial and that you learnt something.")
-					textbox.queue_text("Now its your turn! Hop in Godot and create something magical :)")
-					get_tree().change_scene_to_file("res://scenes/main.tscn")
+					textbox.queue_text("Now it's your turn! Hop on Godot and create something magical!")
+					current_game_state = GameState.END
+			GameState.END:
+				get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_other_node_button_pressed() -> void:
 	current_game_state = GameState.CREATE_ROOT_NODE_3

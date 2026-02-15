@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="godot-workshop-platformer"
+config/name="First Time Godot?"
 run/main_scene="uid://bjfmiu8cu3um0"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
